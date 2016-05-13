@@ -22,7 +22,12 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 	@Override
 	public hospital getHospitalbyName(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		String hql="from hospital h where h.name=?";
+		Query query = SessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, name);
+		List<hospital> result=query.list();
+		
+		return result.get(0);
 	}
 
 	@Override
@@ -39,31 +44,62 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 	@Override
 	public hospital getHospitalByAccount(String account) {
 		// TODO Auto-generated method stub
-		return null;
+		String hql="from hospital h where h.account=?";
+		Query query = SessionFactory.getCurrentSession().createQuery(hql);
+		query.setString(0, account);
+		List<hospital> result=query.list();
+		
+		return result.get(0);
 	}
 
 	@Override
 	public List<hospital> getAllHospitals() {
 		// TODO Auto-generated method stub
-		return null;
+		String hql="from hospital h ";
+		Query query = SessionFactory.getCurrentSession().createQuery(hql);
+		
+		List<hospital> result=query.list();
+		
+		return result;
 	}
 
 	@Override
 	public boolean saveHospital(hospital hospital) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			SessionFactory.getCurrentSession().save(hospital);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("catch exception in hospitaldaoimp savehospital");
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean delHospital(hospital hospital) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			SessionFactory.getCurrentSession().delete(hospital);
+		} catch (Exception e) {
+			System.out.println("catch exception in hospitaldaoimp delhospital");
+			// TODO: handle exception
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public boolean updateHospital(hospital hospital) {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			SessionFactory.getCurrentSession().update(hospital);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("catch exception in hospitaldaoimp updatehospital");
+			return false;
+		}
+		return true;
 	}
 
 }
