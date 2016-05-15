@@ -12,4 +12,5 @@ apartment getApartmentByName(String name);
 apartment getApartmentById(int id);
 apartment getApartmentByAccount(String account);
 boolean updateApartment(apartment apartment);
+List<apartment> getPartOfApartments(int pagenum,int pagesize);
 }

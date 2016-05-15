@@ -90,4 +90,17 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
+	@Override
+	public List<doctor> getPartOfDoctors(int pagenum, int pagesize) {
+		// TODO Auto-generated method stub
+		if(pagenum<=0)
+			pagenum=1;
+		String hql="from doctor ";
+		Query query=SessionFactory.getCurrentSession().createQuery(hql);
+	query.setFirstResult((pagenum-1)*pagesize);
+	query.setMaxResults(pagesize);
+		List<doctor> result=query.list();
+		return result;
+	}
+
 }

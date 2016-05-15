@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.Hospital.core.dao.hospitalDao;
+import com.Hospital.core.entity.apartment;
 import com.Hospital.core.entity.hospital;
 
 public class hospitalDaoImp implements hospitalDao {
@@ -100,6 +101,19 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<hospital> getPartOfHospitals(int pagenum, int pagesize) {
+		// TODO Auto-generated method stub
+		if(pagenum<=0)
+			pagenum=1;
+		String hql="from hospital ";
+		Query query=SessionFactory.getCurrentSession().createQuery(hql);
+	query.setFirstResult((pagenum-1)*pagesize);
+	query.setMaxResults(pagesize);
+		List<hospital> result=query.list();
+		return result;
 	}
 
 }

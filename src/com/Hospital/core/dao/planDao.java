@@ -1,6 +1,7 @@
 package com.Hospital.core.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.Hospital.core.entity.plan;
 
@@ -11,4 +12,5 @@ boolean delPlan(plan plan);
 plan getPlanById(int id);
 plan getPlanByDate(String date);
 plan getPlanByDoctorId(int id);
+List<plan> getPartOfPlans(int pagenum,int pagesize);
 }

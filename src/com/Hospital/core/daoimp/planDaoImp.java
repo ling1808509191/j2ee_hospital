@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.Hospital.core.dao.planDao;
+import com.Hospital.core.entity.apartment;
 import com.Hospital.core.entity.plan;
 
 public class planDaoImp implements planDao {
@@ -77,6 +78,19 @@ private SessionFactory SessionFactory;
 		query.setInteger(0, id);
 		List<plan> result=query.list();
 		return result.get(0);
+	}
+
+	@Override
+	public List<plan> getPartOfPlans(int pagenum, int pagesize) {
+		if(pagenum<=0)
+			pagenum=1;
+		// TODO Auto-generated method stub
+		String hql="from plan ";
+		Query query=SessionFactory.getCurrentSession().createQuery(hql);
+	query.setFirstResult((pagenum-1)*pagesize);
+	query.setMaxResults(pagesize);
+		List<plan> result=query.list();
+		return result;
 	}
 
 }

@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 
 import com.Hospital.core.dao.patienDao;
+import com.Hospital.core.entity.apartment;
 import com.Hospital.core.entity.doctor;
 import com.Hospital.core.entity.patient;
 
@@ -96,6 +97,19 @@ private SessionFactory SessionFactory;
 		List<doctor> result=query.list();
 		if(result.size()==0)
 			return null;
+		return result;
+	}
+
+	@Override
+	public List<doctor> getPartOfDoctors(int pagenum, int pagesize) {
+		if(pagenum<=0)
+			pagenum=1;
+		// TODO Auto-generated method stub
+		String hql="from doctor ";
+		Query query=SessionFactory.getCurrentSession().createQuery(hql);
+	query.setFirstResult((pagenum-1)*pagesize);
+	query.setMaxResults(pagesize);
+		List<doctor> result=query.list();
 		return result;
 	}
 

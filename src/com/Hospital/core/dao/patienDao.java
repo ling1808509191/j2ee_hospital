@@ -13,5 +13,5 @@ doctor getDoctorByname(String name);
 doctor getDoctorById(int id);
 doctor getDoctorByAccount(String account);
 List<doctor> getAllDoctors();
-
+List<doctor> getPartOfDoctors(int pagenum,int pagesize);
 }
