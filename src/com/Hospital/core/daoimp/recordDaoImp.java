@@ -1,16 +1,20 @@
 package com.Hospital.core.daoimp;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.Hospital.core.dao.recordDao;
 import com.Hospital.core.entity.plan;
 import com.Hospital.core.entity.record;
-
+@Component
 public class recordDaoImp implements recordDao {
-private SessionFactory SessionFactory;
+	@Autowired
+    private SessionFactory SessionFactory;
 	@Override
 	public record getRecordById(int id) {
 		// TODO Auto-generated method stub
@@ -83,6 +87,20 @@ private SessionFactory SessionFactory;
 
 
 
+	public SessionFactory getSessionFactory() {
+		return SessionFactory;
+	}
+
+
+
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		SessionFactory = sessionFactory;
+	}
+
+
+
+
 	@Override
 	public boolean updateRecord(record record) {
 		// TODO Auto-generated method stub
@@ -94,6 +112,20 @@ private SessionFactory SessionFactory;
 			return false;
 		}
 		return true;
+	}
+
+
+
+
+	@Override
+	public List<record> getRecordsByDoctorAndDate(Date start, Date end, int d_id) {
+		// TODO Auto-generated method stub
+		String hql="from record r where r.d_id=? and r.time_order between ? and ?";
+		Query query=SessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, d_id);
+		query.setDate(0, start);
+		query.setDate(0, end);
+		return query.list();
 	}
 
 

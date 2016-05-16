@@ -2,12 +2,15 @@ package com.Hospital.core.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.Table;
+@Entity
+@Table(name="plan")
 public class plan {
 private int id;
 private int d_id;

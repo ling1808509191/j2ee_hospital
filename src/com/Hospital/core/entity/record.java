@@ -2,11 +2,17 @@ package com.Hospital.core.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name="record")
 public class record {
 private int id;
 private int p_id;
@@ -15,6 +21,8 @@ private byte time_go;
 private boolean timeout;
 private boolean re_exit;
 private Date time_order;
+private doctor doctor;
+private patient patient;
 @Id
 @GeneratedValue(strategy =GenerationType.AUTO)
 @Column(name = "id", unique = true, nullable =true,updatable=false)
@@ -23,6 +31,22 @@ public int getId() {
 }
 public void setId(int id) {
 	this.id = id;
+}
+@ManyToOne(cascade=CascadeType.ALL)
+@JoinColumn(name="d_id")
+public doctor getDoctor() {
+	return doctor;
+}
+public void setDoctor(doctor doctor) {
+	this.doctor = doctor;
+}
+@ManyToOne(cascade=CascadeType.ALL)
+@JoinColumn(name="p_id")
+public patient getPatient() {
+	return patient;
+}
+public void setPatient(patient patient) {
+	this.patient = patient;
 }
 public int getP_id() {
 	return p_id;

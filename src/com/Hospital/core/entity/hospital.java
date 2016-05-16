@@ -1,6 +1,5 @@
 package com.Hospital.core.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
 
 @Entity
 @Table(name="hospital")
@@ -33,6 +30,7 @@ public class hospital {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}

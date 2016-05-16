@@ -39,6 +39,7 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
+@Column(unique=true)
 public String getAccount() {
 	return account;
 }

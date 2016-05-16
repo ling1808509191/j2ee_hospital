@@ -4,16 +4,25 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.Hospital.core.dao.patienDao;
-import com.Hospital.core.entity.apartment;
-import com.Hospital.core.entity.doctor;
+import com.Hospital.core.dao.patientDao;
 import com.Hospital.core.entity.patient;
-
-public class patienDaoImp implements patienDao {
+@Component
+public class patientDaoImp implements patientDao {
+	@Autowired
 private SessionFactory SessionFactory;
+	public SessionFactory getSessionFactory() {
+		return SessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		SessionFactory = sessionFactory;
+	}
+
 	@Override
-	public boolean savePatien(patient patient) {
+	public boolean savePatient(patient patient) {
 		// TODO Auto-generated method stub
 		try {
 			SessionFactory.getCurrentSession().save(patient);
@@ -26,7 +35,7 @@ private SessionFactory SessionFactory;
 	}
 
 	@Override
-	public boolean delPatien(patient patient) {
+	public boolean delPatient(patient patient) {
 		// TODO Auto-generated method stub
 		try {
 			SessionFactory.getCurrentSession().delete(patient);
@@ -39,7 +48,7 @@ private SessionFactory SessionFactory;
 	}
 
 	@Override
-	public boolean updatePatien(patient patient) {
+	public boolean updatePatient(patient patient) {
 		// TODO Auto-generated method stub
 		try {
 			SessionFactory.getCurrentSession().update(patient);
@@ -52,65 +61,66 @@ private SessionFactory SessionFactory;
 	}
 
 	@Override
-	public doctor getDoctorByname(String name) {
+	public List<patient> getPatientsByname(String name) {
 		// TODO Auto-generated method stub
-		String hql="from doctor d where d.name=?";
+		String hql="from patient p where p.name=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, name);
-		List<doctor> result=query.list();
+		List<patient> result=query.list();
 		if(result.size()==0)
 			return null;
-		return result.get(0);
+		return result;
 	}
 
 	@Override
-	public doctor getDoctorById(int id) {
+	public patient getPatientById(int id) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-				String hql="from doctor d where d.id=?";
+				String hql="from patient p where p.id=?";
 				Query query=SessionFactory.getCurrentSession().createQuery(hql);
 				query.setInteger(0, id);
-				List<doctor> result=query.list();
+				List<patient> result=query.list();
 				if(result.size()==0)
 					return null;
 				return result.get(0);
 	}
 
 	@Override
-	public doctor getDoctorByAccount(String account) {
+	public patient getPatientByAccount(String account) {
 		// TODO Auto-generated method stub
-		String hql="from doctor d where d.account=?";
+		String hql="from patient p where p.account=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setString(0, account);
-		List<doctor> result=query.list();
+		List<patient> result=query.list();
 		if(result.size()==0)
 			return null;
 		return result.get(0);
 	}
 
 	@Override
-	public List<doctor> getAllDoctors() {
+	public List<patient> getAllPatients() {
 		// TODO Auto-generated method stub
-		String hql="from doctor d ";
+		String hql="from patient  ";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		
-		List<doctor> result=query.list();
+		List<patient> result=query.list();
 		if(result.size()==0)
 			return null;
 		return result;
 	}
 
 	@Override
-	public List<doctor> getPartOfDoctors(int pagenum, int pagesize) {
+	public List<patient> getPartOfPatients(int pagenum, int pagesize) {
 		if(pagenum<=0)
 			pagenum=1;
 		// TODO Auto-generated method stub
-		String hql="from doctor ";
+		String hql="from patient ";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 	query.setFirstResult((pagenum-1)*pagesize);
 	query.setMaxResults(pagesize);
-		List<doctor> result=query.list();
+		List<patient> result=query.list();
 		return result;
 	}
 
+	
 }

@@ -4,14 +4,25 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.Hospital.core.dao.managerDao;
 import com.Hospital.core.entity.apartment;
 import com.Hospital.core.entity.doctor;
 import com.Hospital.core.entity.manager;
-
+@Component
 public class managerDaoImp implements managerDao {
+	@Autowired
 private SessionFactory SessionFactory;
+	public SessionFactory getSessionFactory() {
+		return SessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		SessionFactory = sessionFactory;
+	}
+
 	@Override
 	public boolean saveManager(manager manager) {
 		// TODO Auto-generated method stub

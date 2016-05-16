@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.Table;
+@Entity
+@Table(name="doctor")
 public class doctor {
  private int id;
  private String name;
@@ -69,6 +72,7 @@ public int getA_id() {
 public void setA_id(int a_id) {
 	this.a_id = a_id;
 }
+@Column(unique=true)
 public String getAccount() {
 	return account;
 }
@@ -81,7 +85,7 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-@OneToMany(cascade=CascadeType.ALL)
+@ManyToOne(cascade=CascadeType.ALL)
 @JoinColumn(name="a_id")
 public apartment getApartment() {
 	return apartment;
@@ -104,7 +108,7 @@ public Set<plan> getPlan() {
 public void setPlan(Set<plan> plan) {
 	this.plan = plan;
 }
-@OneToMany(mappedBy="doctor",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+@OneToMany(mappedBy="records",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 public Set<record> getRecords() {
 	return records;
 }

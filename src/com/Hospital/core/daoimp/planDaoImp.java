@@ -4,13 +4,24 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.Hospital.core.dao.planDao;
 import com.Hospital.core.entity.apartment;
 import com.Hospital.core.entity.plan;
-
+@Component
 public class planDaoImp implements planDao {
+	@Autowired
 private SessionFactory SessionFactory;
+	public SessionFactory getSessionFactory() {
+		return SessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		SessionFactory = sessionFactory;
+	}
+
 	@Override
 	public boolean savePlan(plan plan) {
 		// TODO Auto-generated method stub

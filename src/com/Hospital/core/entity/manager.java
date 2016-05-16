@@ -1,10 +1,13 @@
 package com.Hospital.core.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.Table;
+@Entity
+@Table(name="manager")
 public class manager {
 	
 private int id;
@@ -26,6 +29,7 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
+@Column(unique=true)
 public String getAccount() {
 	return account;
 }
