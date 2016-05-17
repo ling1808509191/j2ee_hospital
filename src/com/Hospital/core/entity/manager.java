@@ -1,5 +1,7 @@
 package com.Hospital.core.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="manager")
-public class manager {
+public class manager implements Serializable{
 	
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4065919060293738477L;
 private int id;
 private String name;
 private String account;

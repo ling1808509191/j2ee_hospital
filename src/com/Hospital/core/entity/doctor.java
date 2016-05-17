@@ -1,5 +1,6 @@
 package com.Hospital.core.entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,8 +17,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="doctor")
-public class doctor {
- private int id;
+public class doctor implements Serializable{
+ /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7304823762500990104L;
+
+private int id;
  private String name;
  private int level;
  private int price;
@@ -85,30 +91,30 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-@ManyToOne(cascade=CascadeType.ALL)
-@JoinColumn(name="a_id")
+@ManyToOne(targetEntity=apartment.class)
+@JoinColumn(referencedColumnName="id",nullable=false)
 public apartment getApartment() {
 	return apartment;
 }
 public void setApartment(apartment apartment) {
 	this.apartment = apartment;
 }
-@ManyToOne(cascade=CascadeType.ALL)
-@JoinColumn(name="h_id")
+@ManyToOne(targetEntity=hospital.class)
+@JoinColumn(referencedColumnName="id",nullable=false)
 public hospital getHospital() {
 	return hospital;
 }
 public void setHospital(hospital hospital) {
 	this.hospital = hospital;
 }
-@OneToMany(mappedBy="doctor",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+@OneToMany(mappedBy="doctor",targetEntity=plan.class,fetch=FetchType.LAZY)
 public Set<plan> getPlan() {
 	return plan;
 }
 public void setPlan(Set<plan> plan) {
 	this.plan = plan;
 }
-@OneToMany(mappedBy="records",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+@OneToMany(mappedBy="doctor",targetEntity=record.class,fetch=FetchType.LAZY)
 public Set<record> getRecords() {
 	return records;
 }

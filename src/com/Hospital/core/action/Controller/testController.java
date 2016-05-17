@@ -8,20 +8,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.Hospital.core.service.testService;
+
+import com.Hospital.core.modeleimp.exampleModelImp;
+
 import com.google.gson.Gson;
 
 @Controller
 @RequestMapping(value="")
 public class testController {
 	@Autowired
-	private testService testService;
-@RequestMapping(value="/test")
+	private exampleModelImp exampleModelImp;
+	
+	
+@RequestMapping(value="/login")
 @ResponseBody
 public String test(HttpServletRequest request,HttpServletResponse response){
 	 Gson gson=new Gson();
-	return gson.toJson(testService.getAllManagers());
-	
-	
+	 System.out.println("get request in test");
+	return gson.toJson(exampleModelImp.getBeans());
+		
 }
+
+
+
+
 }

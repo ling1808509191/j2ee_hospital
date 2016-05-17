@@ -1,5 +1,7 @@
 package com.Hospital.core.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,11 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="plan")
-public class plan {
+public class plan implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8609404414658230278L;
 private int id;
 private int d_id;
 private String date;
@@ -41,6 +48,7 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
+
 public int getD_id() {
 	return d_id;
 }
@@ -149,8 +157,8 @@ public byte getTime_16() {
 public void setTime_16(byte time_16) {
 	this.time_16 = time_16;
 }
-@ManyToOne(cascade=CascadeType.ALL)
-@JoinColumn(name="d_id")
+@ManyToOne(targetEntity=doctor.class)
+@JoinColumn(referencedColumnName="id",nullable=false)
 public doctor getDoctor() {
 	return doctor;
 }

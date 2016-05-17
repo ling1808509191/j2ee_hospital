@@ -27,7 +27,7 @@
 	 <mvc:resources location="/img/" mapping="/img/**"/>  
 	 <mvc:resources location="/js/" mapping="/js/**"/>   
 		
-  <context:component-scan base-package="com.Hospitalcore.*">   
+  <context:component-scan base-package="com.Hospital.core.*">   
   
  </context:component-scan>
 	<import resource="classpath:config/springAnnotation-hibernate.xml"/>

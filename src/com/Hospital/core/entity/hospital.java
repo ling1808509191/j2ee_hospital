@@ -1,5 +1,6 @@
 package com.Hospital.core.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,8 +15,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="hospital")
-public class hospital {
+public class hospital implements Serializable{
 	
+	
+	private static final long serialVersionUID = 2477193648354357367L;
 	private int id;
 	private String name;
 	private String account;
@@ -49,7 +52,7 @@ public class hospital {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@OneToMany(mappedBy="hospital",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="hospital",fetch=FetchType.LAZY,targetEntity=apartment.class)
 	public Set<apartment> getApartments() {
 		return apartments;
 	}
