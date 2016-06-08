@@ -3,12 +3,13 @@ package com.Hospital.core.serviceimp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.Hospital.core.daoimp.managerDaoImp;
 import com.Hospital.core.entity.manager;
 import com.Hospital.core.service.managerService;
-
+@Service
 public class managerServiceImp implements managerService{
 	@Autowired
 private managerDaoImp managerDaoImp;
