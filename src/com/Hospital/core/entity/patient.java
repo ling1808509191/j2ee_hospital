@@ -1,6 +1,7 @@
 package com.Hospital.core.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ private String name;
 private String account;
 private String password;
 private int money;
-private Set<record> records;
+private Set<record> records=new HashSet<record>();
 @Id
 @GeneratedValue(strategy =GenerationType.AUTO)
 @Column(name = "id", unique = true, nullable =true,updatable=false)

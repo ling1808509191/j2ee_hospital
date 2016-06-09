@@ -85,7 +85,7 @@ private SessionFactory SessionFactory;
 	@Override
 	public plan getPlanByDoctorId(int id) {
 		// TODO Auto-generated method stub
-		String hql="from plan p where p.d_id=?";
+		String hql="from plan p where p.doctor_id=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		List<plan> result=query.list();

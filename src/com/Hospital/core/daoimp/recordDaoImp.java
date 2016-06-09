@@ -32,7 +32,7 @@ public class recordDaoImp implements recordDao {
 	@Override
 	public List<record> getRecordsByPatienId(int id,int pagenum,int pagesize) {
 		// TODO Auto-generated method stub
-		String hql="from record r where r.p_id=?";
+		String hql="from record r where r.patien_id=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		List<record> result=query.list();
@@ -45,7 +45,7 @@ public class recordDaoImp implements recordDao {
 	@Override
 	public List<record> getRecordsByDoctorId(int id, int pagenum, int pagesize) {
 		// TODO Auto-generated method stub
-		String hql="from record r where r.d_id=?";
+		String hql="from record r where r.doctor_id=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		List<record> result=query.list();
@@ -57,7 +57,7 @@ public class recordDaoImp implements recordDao {
 	public List<record> getRecordsByDoctorAndPatien(int d_id, int p_id,
 			int pagenum, int pagesize) {
 		// TODO Auto-generated method stub
-		String hql="from record r where r.p_id=? and r.d_id=?";
+		String hql="from record r where r.patient_id=? and r.doctor_id=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, p_id);
 		query.setInteger(1, d_id);
@@ -121,7 +121,7 @@ public class recordDaoImp implements recordDao {
 	@Override
 	public List<record> getRecordsByDoctorAndDate(Date start, Date end, int d_id) {
 		// TODO Auto-generated method stub
-		String hql="from record r where r.d_id=? and r.time_order between ? and ?";
+		String hql="from record r where r.doctor_id=? and r.time_order between ? and ?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, d_id);
 		query.setDate(0, start);

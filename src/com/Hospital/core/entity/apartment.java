@@ -1,6 +1,7 @@
 package com.Hospital.core.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,9 +27,8 @@ private int id;
 private String name;
 private String account;
 private String password;
-private int h_id;
 private hospital hospital;
-private Set<doctor> doctors;
+private Set<doctor> doctors=new HashSet<doctor>();
 @Id
 @GeneratedValue(strategy =GenerationType.AUTO)
 @Column(name = "id", unique = true, nullable =true,updatable=false)
@@ -57,12 +57,7 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-public int getH_id() {
-	return h_id;
-}
-public void setH_id(int h_id) {
-	this.h_id = h_id;
-}
+
 @ManyToOne(targetEntity=hospital.class)
 @JoinColumn(referencedColumnName="id",nullable=false)
 public hospital getHospital() {

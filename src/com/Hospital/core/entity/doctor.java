@@ -33,8 +33,8 @@ private int id;
  private  String password;
  private apartment apartment;
  private hospital hospital;
- private Set<plan> plan;
- private Set<record> records;
+ private Set<plan> plan=new HashSet<plan>();
+ private Set<record> records=new HashSet<record>();
  public doctor() {
 	// TODO Auto-generated constructor stub
 	 plan=new HashSet<plan>();

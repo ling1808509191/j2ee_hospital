@@ -15,13 +15,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="record")
 public class record implements Serializable{
-/**
-	 * 
+/**   re_exit 是是否取消预约标识 如果取消了 则为false
+	 * time_go是预约的时间段 
+	 * time_out该预约是过期 例如预约三月十日的挂号 到了三月十一日之后 time_out为true
+	 * time_order是预约的日期 例如1994-06-03 保存的date应该只保存年月日
 	 */
 	private static final long serialVersionUID = -2995846225313678930L;
 private int id;
-private int p_id;
-private int d_id;
 private byte time_go;
 private boolean timeout;
 private boolean re_exit;
@@ -53,18 +53,7 @@ public patient getPatient() {
 public void setPatient(patient patient) {
 	this.patient = patient;
 }
-public int getP_id() {
-	return p_id;
-}
-public void setP_id(int p_id) {
-	this.p_id = p_id;
-}
-public int getD_id() {
-	return d_id;
-}
-public void setD_id(int d_id) {
-	this.d_id = d_id;
-}
+
 public byte getTime_go() {
 	return time_go;
 }

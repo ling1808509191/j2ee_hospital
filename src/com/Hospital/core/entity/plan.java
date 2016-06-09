@@ -20,7 +20,6 @@ public class plan implements Serializable{
 	 */
 	private static final long serialVersionUID = -8609404414658230278L;
 private int id;
-private int d_id;
 private String date;
 private doctor doctor;
 private byte time_1;
@@ -49,12 +48,7 @@ public void setId(int id) {
 	this.id = id;
 }
 
-public int getD_id() {
-	return d_id;
-}
-public void setD_id(int d_id) {
-	this.d_id = d_id;
-}
+
 public String getDate() {
 	return date;
 }

@@ -1,6 +1,7 @@
 package com.Hospital.core.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class hospital implements Serializable{
 	private String name;
 	private String account;
 	private String password;
-	private Set<apartment> apartments;
+	private Set<apartment> apartments=new HashSet<apartment>();
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable =true,updatable=false)
