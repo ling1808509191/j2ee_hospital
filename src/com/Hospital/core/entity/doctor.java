@@ -27,8 +27,6 @@ private int id;
  private String name;
  private int level;
  private int price;
- private int h_id;
- private int a_id;
  private String account;
  private  String password;
  private apartment apartment;
@@ -66,18 +64,7 @@ public int getPrice() {
 public void setPrice(int price) {
 	this.price = price;
 }
-public int getH_id() {
-	return h_id;
-}
-public void setH_id(int h_id) {
-	this.h_id = h_id;
-}
-public int getA_id() {
-	return a_id;
-}
-public void setA_id(int a_id) {
-	this.a_id = a_id;
-}
+
 @Column(unique=true)
 public String getAccount() {
 	return account;
