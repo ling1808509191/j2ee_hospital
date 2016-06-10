@@ -25,7 +25,7 @@ private planDaoImp planDaoImp;
 		return planDaoImp.updatePlan(plan);
 	}
 
-@Override
+@Transactional
 	public boolean delPlan(plan plan) {
 		// TODO Auto-generated method stub
 		return planDaoImp.delPlan(plan);
@@ -55,7 +55,7 @@ private planDaoImp planDaoImp;
 		return planDaoImp.getPartOfPlans(pagenum, pagesize);
 	}
 
-@Override
+@Transactional
 public plan getPlansByDoctorIdAndDate(int d_id, String date) {
 	// TODO Auto-generated method stub
 	return planDaoImp.getPlansByDoctorIdAndDate(d_id, date).get(0);

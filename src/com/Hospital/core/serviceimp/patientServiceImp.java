@@ -19,7 +19,7 @@ private patientDaoImp patientDaoImp;
 		return patientDaoImp.savePatient(patient);
 	}
 
-@Override
+@Transactional
 	public boolean delPatient(patient patient) {
 		// TODO Auto-generated method stub
 		return patientDaoImp.delPatient(patient);

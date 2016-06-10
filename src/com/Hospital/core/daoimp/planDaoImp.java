@@ -27,7 +27,7 @@ private SessionFactory SessionFactory;
 	public boolean savePlan(plan plan) {
 		// TODO Auto-generated method stub
 		try {
-			SessionFactory.getCurrentSession().save(plan);
+			SessionFactory.getCurrentSession().saveOrUpdate(plan);
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("catch exception in planDaoImp saveplan");
