@@ -27,6 +27,13 @@ private int id;
 private String name;
 private String account;
 private String password;
+private String type;
+public String getType() {
+	return type;
+}
+public void setType(String type) {
+	this.type = type;
+}
 private hospital hospital;
 private Set<doctor> doctors=new HashSet<doctor>();
 @Id

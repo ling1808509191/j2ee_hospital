@@ -24,6 +24,20 @@ public class hospital implements Serializable{
 	private String name;
 	private String account;
 	private String password;
+	private String imgurl;
+	public String getImgurl() {
+		return imgurl;
+	}
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	private String address;
 	private Set<apartment> apartments=new HashSet<apartment>();
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,13 +28,13 @@ public class hospitalConntroller {
 	
 	@RequestMapping(value="/addApartment", method = RequestMethod.POST)
 	@ResponseBody
-	public String addHospital(HttpServletRequest request,HttpServletResponse response){
+	public String addApartment(@RequestBody Map mappp){
 		 Map map = new HashMap();
 		 Gson gson=new Gson();
-		 int h_id = Integer.parseInt(request.getParameter("h_id"));
-		 String account = request.getParameter("account");
-		 String name = request.getParameter("name");
-		 String password = request.getParameter("password");
+		 int h_id = (int)(mappp.get("h_id"));
+		 String account = (String)mappp.get("account");
+		 String name = (String)mappp.get("name");
+		 String password = (String)mappp.get("password");
 		 Boolean r = hmi.createApartment(h_id, account, name, password);
 		 map.clear();
 		 map.put("result", r);
@@ -42,14 +43,14 @@ public class hospitalConntroller {
 	
 	@RequestMapping(value="/updateApartment", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateApartment(HttpServletRequest request,HttpServletResponse response){
+	public String updateApartment(@RequestBody Map mappp){
 		 Map map = new HashMap();
 		 
 		 Gson gson=new Gson();
-		 int a_id = Integer.parseInt(request.getParameter("a_id"));
-		 String account = request.getParameter("account");
-		 String name = request.getParameter("name");
-		 String password = request.getParameter("password");
+		 int a_id = (int)(mappp.get("a_id"));
+		 String account = (String)mappp.get("account");
+		 String name = (String)mappp.get("name");
+		 String password = (String)mappp.get("password ");
 		 Boolean r = hmi.updateApartment(a_id, account, name, password);
 		 map.clear();
 		 map.put("result", r);

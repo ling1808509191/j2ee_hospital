@@ -31,7 +31,21 @@ private int id;
  private  String password;
  private apartment apartment;
  private hospital hospital;
- private Set<plan> plan=new HashSet<plan>();
+ private String detel;
+ private String imgurl;
+ public String getDetel() {
+	return detel;
+}
+public void setDetel(String detel) {
+	this.detel = detel;
+}
+public String getImgurl() {
+	return imgurl;
+}
+public void setImgurl(String imgurl) {
+	this.imgurl = imgurl;
+}
+private Set<plan> plan=new HashSet<plan>();
  private Set<record> records=new HashSet<record>();
  public doctor() {
 	// TODO Auto-generated constructor stub

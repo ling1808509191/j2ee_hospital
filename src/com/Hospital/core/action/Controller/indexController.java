@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,12 +36,12 @@ public class indexController {
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	@ResponseBody
-	public String login(HttpServletRequest request,HttpServletResponse response){
+	public String login(@RequestBody Map mappp){
 		Map map = new HashMap();
 		Gson gson=new Gson();
-		int type = Integer.parseInt(request.getParameter("type"));
-		String account = request.getParameter("account");
-		String password = request.getParameter("password");
+		int type = (int)mappp.get("type");
+		String account = (String)mappp.get("account");
+		String password = (String)mappp.get("password");
 		switch(type) {
 		case 1: {
 			Boolean r = mmi.login(account, password);
@@ -77,12 +78,12 @@ public class indexController {
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	@ResponseBody
-	public String register(HttpServletRequest request,HttpServletResponse response){
+	public String register(@RequestBody Map mappp){
 		Map map = new HashMap();
 		Gson gson=new Gson();
-		String account = request.getParameter("account");
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
+		String account = (String)mappp.get("account");
+		String name = (String)mappp.get("name");
+		String password = (String)mappp.get("password");
 		Boolean r = pmi.register(account, name, password);
 		map.clear();
 		map.put("result", r);

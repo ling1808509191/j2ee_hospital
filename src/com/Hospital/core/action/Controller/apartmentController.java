@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,16 +26,16 @@ public class apartmentController {
 	
 	@RequestMapping(value="/addDoctor", method = RequestMethod.POST)
 	@ResponseBody
-	public String addDoctor(HttpServletRequest request,HttpServletResponse response){
+	public String addDoctor(@RequestBody Map mappp){
 		Map map = new HashMap();
 		 Gson gson=new Gson();
-		 int a_id = Integer.parseInt(request.getParameter("a_id"));
-		 int h_id = Integer.parseInt(request.getParameter("h_id"));
-		 String account = request.getParameter("account");
-		 String name = request.getParameter("name");
-		 String password = request.getParameter("password");
-		 int level = Integer.parseInt(request.getParameter("level"));
-		 int price = Integer.parseInt(request.getParameter("price"));
+		 int a_id = (int)(mappp.get("a_id"));
+		 int h_id = (int)(mappp.get("h_id"));
+		 String account = (String)mappp.get("account");
+		 String name = (String)mappp.get("name");
+		 String password = (String)mappp.get("password");
+		 int level = (int)(mappp.get("level"));
+		 int price = (int)(mappp.get("price"));
 		 Boolean r = ami.createDoctor(a_id, h_id, account, name, password, level, price);
 		 map.clear();
 		 map.put("result", r);
@@ -43,16 +44,16 @@ public class apartmentController {
 	
 	@RequestMapping(value="/updateDoctor", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateDoctor(HttpServletRequest request,HttpServletResponse response){
+	public String updateDoctor(@RequestBody Map mappp){
 		Map map = new HashMap();
 		 Gson gson=new Gson();
-		 int a_id = Integer.parseInt(request.getParameter("a_id"));
-		 int d_id = Integer.parseInt(request.getParameter("d_id"));
-		 String account = request.getParameter("account");
-		 String name = request.getParameter("name");
-		 String password = request.getParameter("password");
-		 int level = Integer.parseInt(request.getParameter("level"));
-		 int price = Integer.parseInt(request.getParameter("price"));
+		 int a_id = (int)(mappp.get("a_id"));
+		 int d_id = (int)(mappp.get("d_id"));
+		 String account = (String)mappp.get("account");
+		 String name = (String)mappp.get("name");
+		 String password = (String)mappp.get("password ");
+		 int level = (int)(mappp.get("level"));
+		 int price = (int)(mappp.get("price"));
 		 Boolean r = ami.updateDoctor(a_id, d_id, account, name, password, level, price);
 		 map.clear();
 		 map.put("result", r);

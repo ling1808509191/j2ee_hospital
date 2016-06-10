@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,23 +31,13 @@ public class doctorController {
 	
 	@RequestMapping(value="/addPlan", method = RequestMethod.POST)
 	@ResponseBody
-	public String addPlan(HttpServletRequest request,HttpServletResponse response) throws ParseException {
+	public String addPlan(@RequestBody Map mappp) throws ParseException{
 		Map map = new HashMap();
 		Gson gson=new Gson();
-		int d_id = Integer.parseInt(request.getParameter("d_id"));
-		String date = request.getParameter("date");
-//		int time = Integer.parseInt(request.getParameter("time"));
-//		byte p_num = Byte.parseByte(request.getParameter("p_num"));
-		List<Integer> time = new ArrayList<Integer>();
-		List<Byte> p_num = new ArrayList<Byte>();
-		List<String> values_time = Arrays.asList(request.getParameterValues("time"));
-		for(String v : values_time) {
-			time.add(Integer.parseInt(v));
-		}
-		List<String> values_p_num = Arrays.asList(request.getParameterValues("p_num"));
-		for(String v : values_p_num) {
-			p_num.add(Byte.parseByte(v));
-		}
+		int d_id = (int)mappp.get("d_id");
+		String date = (String)mappp.get("date");
+		List<Integer> time = (List<Integer>)mappp.get("time");
+		List<Byte> p_num = (List<Byte>)mappp.get("p_num");;
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = df.parse(date);
 		String n_date = df.format(new Date());
