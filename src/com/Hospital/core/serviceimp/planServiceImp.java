@@ -38,13 +38,13 @@ private planDaoImp planDaoImp;
 	}
 
 @Transactional
-	public plan getPlanByDate(String date) {
+	public List<plan> getPlanByDate(String date) {
 		// TODO Auto-generated method stub
 		return planDaoImp.getPlanByDate(date);
 	}
 
 @Transactional
-	public plan getPlanByDoctorId(int id) {
+	public List<plan> getPlanByDoctorId(int id) {
 		// TODO Auto-generated method stub
 		return planDaoImp.getPlanByDoctorId(id);
 	}

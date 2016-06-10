@@ -9,7 +9,7 @@ public interface planService {
 	boolean updatePlan(plan plan);
 	boolean delPlan(plan plan);
 	plan getPlanById(int id);
-	plan getPlanByDate(String date);
-	plan getPlanByDoctorId(int id);
+	List<plan> getPlanByDate(String date);
+	List<plan>getPlanByDoctorId(int id);
 	List<plan> getPartOfPlans(int pagenum,int pagesize);
 }
