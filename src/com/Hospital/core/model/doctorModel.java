@@ -9,7 +9,7 @@ import com.Hospital.core.serviceimp.doctorServiceImp;
 
 public interface doctorModel {
 	public boolean login(String account, String password);
-	public boolean addPlan(int d_id, String date, int time, byte p_num);
+	public boolean addPlan(int d_id, String date, List<Integer> time, List<Byte> p_num);
 	public List<plan> getPlanByDoctorId(int d_id);
 	public List<plan> getPlanByDate(String date);
 }

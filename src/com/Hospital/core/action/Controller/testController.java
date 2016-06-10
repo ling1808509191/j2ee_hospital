@@ -36,14 +36,14 @@ public class testController {
 	@Autowired
 	private exampleModelImp exampleModelImp;
 	
-	@RequestMapping(value="/register")
-	@ResponseBody
-	public String testt(HttpServletRequest request,HttpServletResponse response){
-		 Gson gson=new Gson();
-		 System.out.println("fuck");
-		return gson.toJson(exampleModelImp.getBeans());
-			
-	}	
+//	@RequestMapping(value="/register")
+//	@ResponseBody
+//	public String testt(HttpServletRequest request,HttpServletResponse response){
+//		 Gson gson=new Gson();
+//		 System.out.println("fuck");
+//		return gson.toJson(exampleModelImp.getBeans());
+//			
+//	}	
 @RequestMapping(value="/login")
 @ResponseBody
 public String test(HttpServletRequest request,HttpServletResponse response){

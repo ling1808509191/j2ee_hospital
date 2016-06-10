@@ -50,7 +50,7 @@
 				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
 				<prop key="del*">PROPAGATION_REQUIRED,-Exception</prop>
-				<prop key="get*">PROPAGATION_NEVER</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,-Exception</prop>
 			</props>
 		</property>
 	</bean>

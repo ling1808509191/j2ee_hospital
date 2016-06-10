@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Hospital.core.dao.hospitalDao;
 import com.Hospital.core.entity.apartment;
@@ -35,7 +36,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public hospital getHospitalbyId(int id) {
 		// TODO Auto-generated method stub
 		String hql="from hospital h where h.id=?";
@@ -46,7 +47,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public hospital getHospitalByAccount(String account) {
 		// TODO Auto-generated method stub
 		String hql="from hospital h where h.account=?";
@@ -57,7 +58,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public List<hospital> getAllHospitals() {
 		// TODO Auto-generated method stub
 		String hql="from hospital h ";
@@ -68,7 +69,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return result;
 	}
 
-	@Override
+	@Transactional
 	public boolean saveHospital(hospital hospital) {
 		// TODO Auto-generated method stub
 		try {
@@ -81,7 +82,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public boolean delHospital(hospital hospital) {
 		// TODO Auto-generated method stub
 		try {
@@ -94,7 +95,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public boolean updateHospital(hospital hospital) {
 		// TODO Auto-generated method stub
 		try {
@@ -107,7 +108,7 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public List<hospital> getPartOfHospitals(int pagenum, int pagesize) {
 		// TODO Auto-generated method stub
 		if(pagenum<=0)

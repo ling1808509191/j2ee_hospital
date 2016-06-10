@@ -21,12 +21,11 @@ import com.google.gson.Gson;
 public class managerController {
 	@Autowired
 	private managerModelImp mmi;
-	
-	private Map map = new HashMap();
 
 	@RequestMapping(value="/addHospital", method = RequestMethod.POST)
 	@ResponseBody
 	public String addHospital(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 String account = request.getParameter("account");
 		 String name = request.getParameter("name");
@@ -40,6 +39,7 @@ public class managerController {
 	@RequestMapping(value="/updateHospital", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateHospital(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int h_id = Integer.parseInt(request.getParameter("h_id"));
 		 String account = request.getParameter("account");
@@ -54,6 +54,7 @@ public class managerController {
 	@RequestMapping(value="/getHospitalByPage", method = RequestMethod.GET)
 	@ResponseBody
 	public String getHospitalByPage(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int pagenum = Integer.parseInt(request.getParameter("pagenum"));
 		 int pagesize = Integer.parseInt(request.getParameter("pagesize"));
@@ -66,6 +67,7 @@ public class managerController {
 	@RequestMapping(value="/delHospitalById", method = RequestMethod.GET)
 	@ResponseBody
 	public String delHospitalById(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int h_id = Integer.parseInt(request.getParameter("h_id"));
 		 Boolean r = mmi.delHospitalById(h_id);

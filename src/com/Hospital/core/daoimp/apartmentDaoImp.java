@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Hospital.core.dao.apartmentDao;
 import com.Hospital.core.entity.apartment;
@@ -22,7 +23,7 @@ private SessionFactory SessionFactory;
 		SessionFactory = sessionFactory;
 	}
 
-	@Override
+	@Transactional
 	public boolean saveApartment(apartment apartment) {
 		// TODO Auto-generated method stub
 		try {
@@ -35,7 +36,7 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public boolean delApartment(apartment apartment) {
 		// TODO Auto-generated method stub
 		try {
@@ -48,7 +49,7 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public List<apartment> getAllApartments() {
 		// TODO Auto-generated method stub
 		String hql="from apartment a";
@@ -56,7 +57,7 @@ private SessionFactory SessionFactory;
 		return query.list();
 	}
 
-	@Override
+	@Transactional
 	public List<apartment> getApartmentByName(String name) {
 		// TODO Auto-generated method stub
 		String hql="from apartment a where a.name=?";
@@ -66,7 +67,7 @@ private SessionFactory SessionFactory;
 		return result;
 	}
 
-	@Override
+	@Transactional
 	public apartment getApartmentById(int id) {
 		// TODO Auto-generated method stub
 		String hql="from apartment a where a.id=?";
@@ -76,7 +77,7 @@ private SessionFactory SessionFactory;
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public apartment getApartmentByAccount(String account) {
 		// TODO Auto-generated method stub
 		String hql="from apartment a where a.account=?";
@@ -86,7 +87,7 @@ private SessionFactory SessionFactory;
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public boolean updateApartment(apartment apartment) {
 		// TODO Auto-generated method stub
 		try {
@@ -99,7 +100,7 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public List<apartment> getPartOfApartments(int pagenum, int pagesize) {
 		// TODO Auto-generated method stub
 		if(pagenum<=0)

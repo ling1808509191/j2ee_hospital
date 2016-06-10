@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Hospital.core.dao.doctorDao;
 import com.Hospital.core.entity.apartment;
@@ -23,7 +24,7 @@ private SessionFactory SessionFactory;
 		SessionFactory = sessionFactory;
 	}
 
-	@Override
+	@Transactional
 	public List<doctor> getDoctorByname(String name) {
 		// TODO Auto-generated method stub
 		String hql="from doctor a where a.name=?";
@@ -33,7 +34,7 @@ private SessionFactory SessionFactory;
 		return result;
 	}
 
-	@Override
+	@Transactional
 	public doctor getDoctorByAccount(String account) {
 		// TODO Auto-generated method stub
 		String hql="from doctor a where a.account=?";
@@ -43,7 +44,7 @@ private SessionFactory SessionFactory;
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public doctor getDoctorById(int id) {
 		// TODO Auto-generated method stub
 		String hql="from doctor a where a.id=?";
@@ -53,7 +54,7 @@ private SessionFactory SessionFactory;
 		return result.get(0);
 	}
 
-	@Override
+	@Transactional
 	public List<doctor> getAllDoctors() {
 		// TODO Auto-generated method stub
 		String hql="from doctor a ";
@@ -63,7 +64,7 @@ private SessionFactory SessionFactory;
 		return result;
 	}
 
-	@Override
+	@Transactional
 	public boolean delDoctor(doctor doctor) {
 		// TODO Auto-generated method stub
 		try {
@@ -76,7 +77,7 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public boolean updateDoctor(doctor doctor) {
 		// TODO Auto-generated method stub
 		try {
@@ -89,7 +90,7 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public boolean saveDoctor(doctor doctor) {
 		// TODO Auto-generated method stub
 		try {
@@ -102,7 +103,7 @@ private SessionFactory SessionFactory;
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public List<doctor> getPartOfDoctors(int pagenum, int pagesize) {
 		// TODO Auto-generated method stub
 		if(pagenum<=0)

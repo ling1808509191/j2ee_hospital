@@ -23,11 +23,10 @@ public class apartmentController {
 	@Autowired
 	private apartmentModelImp ami;
 	
-	private Map map = new HashMap();
-	
 	@RequestMapping(value="/addDoctor", method = RequestMethod.POST)
 	@ResponseBody
 	public String addDoctor(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int a_id = Integer.parseInt(request.getParameter("a_id"));
 		 int h_id = Integer.parseInt(request.getParameter("h_id"));
@@ -45,6 +44,7 @@ public class apartmentController {
 	@RequestMapping(value="/updateDoctor", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateDoctor(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int a_id = Integer.parseInt(request.getParameter("a_id"));
 		 int d_id = Integer.parseInt(request.getParameter("d_id"));
@@ -62,6 +62,7 @@ public class apartmentController {
 	@RequestMapping(value="/getDoctorByPage", method = RequestMethod.GET)
 	@ResponseBody
 	public String getDoctorByPage(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int pagenum = Integer.parseInt(request.getParameter("pagenum"));
 		 int pagesize = Integer.parseInt(request.getParameter("pagesize"));
@@ -74,6 +75,7 @@ public class apartmentController {
 	@RequestMapping(value="/delDoctorById", method = RequestMethod.GET)
 	@ResponseBody
 	public String delDoctorById(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		 Gson gson=new Gson();
 		 int d_id = Integer.parseInt(request.getParameter("d_id"));
 		 Boolean r =ami.delDoctorById(d_id);

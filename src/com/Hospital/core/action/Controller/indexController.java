@@ -33,11 +33,10 @@ public class indexController {
 	@Autowired
 	private	patientModelImp pmi;
 	
-	private Map map = new HashMap();
-	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String login(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
 		Gson gson=new Gson();
 		int type = Integer.parseInt(request.getParameter("type"));
 		String account = request.getParameter("account");
@@ -76,17 +75,18 @@ public class indexController {
 		}
 	}
 	
-//	@RequestMapping(value="/register", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String register(HttpServletRequest request,HttpServletResponse response){
-//		Gson gson=new Gson();
-//		String account = request.getParameter("account");
-//		String name = request.getParameter("name");
-//		String password = request.getParameter("password");
-//		Boolean r = pmi.register(account, name, password);
-//		map.clear();
-//		map.put("result", r);
-//		return gson.toJson(map);
-//		
-//	}
+	@RequestMapping(value="/register", method = RequestMethod.POST)
+	@ResponseBody
+	public String register(HttpServletRequest request,HttpServletResponse response){
+		Map map = new HashMap();
+		Gson gson=new Gson();
+		String account = request.getParameter("account");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		Boolean r = pmi.register(account, name, password);
+		map.clear();
+		map.put("result", r);
+		return gson.toJson(map);
+		
+	}
 }
