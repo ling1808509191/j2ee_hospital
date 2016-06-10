@@ -13,4 +13,5 @@ plan getPlanById(int id);
 List<plan> getPlanByDate(String date);
 List<plan> getPlanByDoctorId(int id);
 List<plan> getPartOfPlans(int pagenum,int pagesize);
+List<plan> getPlansByDoctorIdAndDate(int id,String date);
 }

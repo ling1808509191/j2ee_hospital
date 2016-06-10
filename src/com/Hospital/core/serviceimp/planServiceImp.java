@@ -55,4 +55,10 @@ private planDaoImp planDaoImp;
 		return planDaoImp.getPartOfPlans(pagenum, pagesize);
 	}
 
+@Override
+public plan getPlansByDoctorIdAndDate(int d_id, String date) {
+	// TODO Auto-generated method stub
+	return planDaoImp.getPlansByDoctorIdAndDate(d_id, date).get(0);
+}
+
 }

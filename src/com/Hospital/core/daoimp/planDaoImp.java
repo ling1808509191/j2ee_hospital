@@ -105,4 +105,14 @@ private SessionFactory SessionFactory;
 		return result;
 	}
 
+	@Override
+	public List<plan> getPlansByDoctorIdAndDate(int id, String date) {
+		// TODO Auto-generated method stub
+		String hql="from plan a where a.dcotor_id = ? and a.date = ?";
+		Query query=SessionFactory.getCurrentSession().createQuery(hql);
+
+		List<plan> result=query.list();
+		return result;
+	}
+
 }
