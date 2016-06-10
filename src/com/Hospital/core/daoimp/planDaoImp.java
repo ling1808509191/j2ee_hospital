@@ -83,9 +83,9 @@ private SessionFactory SessionFactory;
 	}
 
 	@Override
-	public List<plan>getPlanByDoctorId(int id) {
+	public List<plan> getPlanByDoctorId(int id) {
 		// TODO Auto-generated method stub
-		String hql="from plan p where p.doctor_id=?";
+		String hql="select  p from plan p where p.doctor.id=?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, id);
 		List<plan> result=query.list();
@@ -108,9 +108,9 @@ private SessionFactory SessionFactory;
 	@Override
 	public List<plan> getPlansByDoctorIdAndDate(int id, String date) {
 		// TODO Auto-generated method stub
-		String hql="from plan a where a.dcotor_id = ? and a.date = ?";
+		String hql="select p from plan p where  p.doctor.id= ? and p.date = ?";
 		Query query=SessionFactory.getCurrentSession().createQuery(hql);
-
+        
 		List<plan> result=query.list();
 		return result;
 	}
