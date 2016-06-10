@@ -44,6 +44,7 @@ public class hospitalConntroller {
 	@ResponseBody
 	public String updateApartment(HttpServletRequest request,HttpServletResponse response){
 		 Map map = new HashMap();
+		 
 		 Gson gson=new Gson();
 		 int a_id = Integer.parseInt(request.getParameter("a_id"));
 		 String account = request.getParameter("account");
