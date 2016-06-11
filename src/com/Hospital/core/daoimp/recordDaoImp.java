@@ -19,11 +19,8 @@ public class recordDaoImp implements recordDao {
 	@Override
 	public record getRecordById(int id) {
 		// TODO Auto-generated method stub
-		String hql="from record r where r.id=?";
-		Query query=SessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, id);
-		List<record> result=query.list();
-		return result.get(0);
+		record record=(record)SessionFactory.getCurrentSession().get(record.class, id);
+		return record;
 	}
 
 	

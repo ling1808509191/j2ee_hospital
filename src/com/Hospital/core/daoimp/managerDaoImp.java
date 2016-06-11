@@ -102,13 +102,10 @@ private SessionFactory SessionFactory;
 	@Override
 	public manager getManagerById(int id) {
 		// TODO Auto-generated method stub
-		String hql="from manager m where m.id=? ";
-		Query query=SessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, id);
-		List<manager> result=query.list();
-		if(result.size()==0)
-			return null;
-		return result.get(0);
+		
+		manager query=(manager)SessionFactory.getCurrentSession().get(manager.class, id);
+		
+		return query;
 	}
 
 	@Override

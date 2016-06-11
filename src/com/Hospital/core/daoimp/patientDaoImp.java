@@ -77,13 +77,9 @@ private SessionFactory SessionFactory;
 	public patient getPatientById(int id) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-				String hql="from patient p where p.id=?";
-				Query query=SessionFactory.getCurrentSession().createQuery(hql);
-				query.setInteger(0, id);
-				List<patient> result=query.list();
-				if(result.size()==0)
-					return null;
-				return result.get(0);
+				
+				patient patient=(patient)SessionFactory.getCurrentSession().get(patient.class, id);
+				return patient;
 	}
 
 	@Override

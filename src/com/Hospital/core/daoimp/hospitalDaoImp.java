@@ -39,12 +39,11 @@ public void setSessionFactory(SessionFactory sessionFactory) {
 	@Transactional
 	public hospital getHospitalbyId(int id) {
 		// TODO Auto-generated method stub
-		String hql="from hospital h where h.id=?";
-		Query query = SessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, id);
-		List<hospital> result=query.list();
 		
-		return result.get(0);
+		hospital hsHospital = (hospital)SessionFactory.getCurrentSession().get(hospital.class, id);
+		
+		
+		return hsHospital;
 	}
 
 	@Transactional

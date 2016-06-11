@@ -47,11 +47,10 @@ private SessionFactory SessionFactory;
 	@Transactional
 	public doctor getDoctorById(int id) {
 		// TODO Auto-generated method stub
-		String hql="from doctor a where a.id=?";
-		Query query=SessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, id);
-		List<doctor> result=query.list();
-		return result.get(0);
+		
+		doctor doctor=(doctor)SessionFactory.getCurrentSession().get(doctor.class, id);
+		
+		return doctor;
 	}
 
 	@Transactional

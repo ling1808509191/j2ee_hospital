@@ -65,11 +65,9 @@ private SessionFactory SessionFactory;
 	@Override
 	public plan getPlanById(int id) {
 		// TODO Auto-generated method stub
-		String hql="from plan p where p.id=?";
-		Query query=SessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, id);
-		List<plan> result=query.list();
-		return result.get(0);
+		
+		plan query=(plan)SessionFactory.getCurrentSession().get(plan.class, id);
+		return query;
 	}
 
 	@Override

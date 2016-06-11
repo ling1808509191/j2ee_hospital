@@ -70,11 +70,9 @@ private SessionFactory SessionFactory;
 	@Transactional
 	public apartment getApartmentById(int id) {
 		// TODO Auto-generated method stub
-		String hql="from apartment a where a.id=?";
-		Query query=SessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, id);
-		List<apartment> result=query.list();
-		return result.get(0);
+		
+		apartment apartment=(apartment)SessionFactory.getCurrentSession().get(apartment.class,id);
+		return apartment;
 	}
 
 	@Transactional

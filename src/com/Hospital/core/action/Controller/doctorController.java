@@ -4,6 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Hospital.core.entity.plan;
 import com.Hospital.core.modeleimp.DoctorModelImp;
+import com.Hospital.core.serviceimp.doctorServiceImp;
 import com.google.gson.Gson;
 
 @Controller
@@ -31,6 +35,8 @@ import com.google.gson.Gson;
 public class doctorController {
 	@Autowired
 	private DoctorModelImp dmi;
+	@Autowired
+	private doctorServiceImp dsi;
 	
 	@RequestMapping(value="/addPlan", method = RequestMethod.POST)
 	@ResponseBody
@@ -76,63 +82,86 @@ public class doctorController {
 
 	@RequestMapping(value="/getPlanByDoctorId", method = RequestMethod.GET)
 	@ResponseBody
-	public String getgetPlanByDoctorId(HttpServletRequest request,HttpServletResponse response)  {
+	public String getPlanByDoctorId(HttpServletRequest request,HttpServletResponse response) throws ParseException {
 		Map map = new HashMap();
 		Gson gson=new Gson();
-		int d_id = -1;
-		try {
-			d_id = Integer.parseInt(request.getParameter("d_id"));
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
+		int d_id = Integer.parseInt(request.getParameter("d_id"));
+		System.out.println(d_id);
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String n_date = df.format(new Date());
-		Date date2 =new Date();
-		try {
-			date2 = df.parse(n_date);
-		} catch (Exception e) {
-			
-			System.out.println("date2 = "+date2);
-			// TODO: handle exception
-		}
-		
-		List<plan> list = null;
-		try {
-			 list = dmi.getPlanByDoctorId(d_id);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("d_id=  "+d_id);
-		}
-		Date date1 = new Date();
-		for(plan p : list) {
-			p.setDoctor(null);
-			
-			try {
-				 date1 = df.parse(p.getDate());
-			} catch (Exception e) {
-				
-				System.out.println("p.getdate = "+p.getDate());
-			 // TODO: handle exception
-			}
-			
+		Date date2 = df.parse(n_date);
+		System.out.println(d_id + " " + n_date);
+		List<plan> list = dmi.getPlanByDoctorId(d_id);
+		List<plan> list_tmp = new ArrayList<plan>(list);
+ 		System.out.println(list.size());
+		int size = list.size();
+		for(int i = 0; i < size; i++) {
+			plan p = list_tmp.get(i);
+			Date date1 = df.parse(p.getDate());
+			System.out.println(date1);
+			System.out.println(date2);
 			int days = (int)((date1.getTime() - date2.getTime())/86400000);
+			System.out.println(days);
 			if(days > 7 || days < 0) {
+				System.out.println(list);
 				list.remove(p);
+				System.out.println(list);
 			}
 		}
+		int flag = 0;
+		for(int j = 0; j < 7; j++) {
+			Calendar cal = Calendar.getInstance(); 
+	        cal.setTime(date2); 
+	        cal.add(Calendar.DAY_OF_MONTH, j);
+	        if(list != null) {
+	        	for(plan p: list) {
+		        	if(p.getDate().equals(df.format(cal.getTime()))){
+		        		flag = 1;
+		        		break;
+		        	}
+		        	else {
+		        		continue;
+		        	}
+		        }
+		        if(flag == 0) {
+		        	plan pl = new plan();
+		        	pl.setDate(df.format(cal.getTime()));
+		        	pl.setDoctor(dsi.getDoctorById(d_id));
+		        	list.add(pl);
+		        }
+	        }
+	        else {
+	        	plan pl = new plan();
+	        	pl.setDate(df.format(cal.getTime()));
+	        	pl.setDoctor(dsi.getDoctorById(d_id));
+	        	list.add(pl);
+	        }
+	        
+		}
+		Collections.sort(list, new Comparator<plan>() { 
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			public int compare(plan o1, plan o2) {
+				// TODO Auto-generated method stub
+				Date d1 = null, d2 = null;
+				try { 
+                    d1 = df.parse(o1.getDate()); 
+                } catch (ParseException e) { 
+                    e.printStackTrace(); 
+                }
+				try { 
+	                d2 = df.parse(o2.getDate()); 
+	            } catch (ParseException e) { 
+	                e.printStackTrace(); 
+	            }
+				if(null == d1 || null == d2) { 
+                    return 0; 
+                }
+				return  d1.compareTo(d2);
+			} 
+        });
 		map.clear();
 		map.put("content", list);
-		String result= "";
-		try {
-			 result= gson.toJson(map);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("result = "+result);
-			System.err.println("map: content="+list);
-		}
-		
-		return result;
+		return gson.toJson(map);
 	}
 	
 	@RequestMapping(value="/getPlanByDate", method = RequestMethod.GET)
@@ -141,8 +170,9 @@ public class doctorController {
 		Map map = new HashMap();
 		Gson gson=new Gson();
 		String date = request.getParameter("date");
-		System.out.println("date = "+date);
 		List<plan> list = dmi.getPlanByDate(date);
+		System.out.println(date);
+		System.out.println(list);
 		map.clear();
 		map.put("content", list);
 		return gson.toJson(map);
