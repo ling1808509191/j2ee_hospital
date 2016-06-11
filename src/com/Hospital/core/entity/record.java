@@ -26,8 +26,8 @@ private byte time_go;
 private boolean timeout;
 private boolean re_exit;
 private Date time_order;
-private doctor doctor;
-private patient patient;
+private transient doctor doctor;
+private transient patient patient;
 @Id
 @GeneratedValue(strategy =GenerationType.AUTO)
 @Column(name = "id", unique = true, nullable =true,updatable=false)

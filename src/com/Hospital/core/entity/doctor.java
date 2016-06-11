@@ -29,8 +29,8 @@ private int id;
  private int price;
  private String account;
  private  String password;
- private apartment apartment;
- private hospital hospital;
+ private transient apartment apartment;
+ private transient hospital hospital;
  private String detel;
  private String imgurl;
  public String getDetel() {
@@ -45,8 +45,8 @@ public String getImgurl() {
 public void setImgurl(String imgurl) {
 	this.imgurl = imgurl;
 }
-private Set<plan> plan=new HashSet<plan>();
- private Set<record> records=new HashSet<record>();
+private transient Set<plan> plan=new HashSet<plan>();
+ private transient Set<record> records=new HashSet<record>();
  public doctor() {
 	// TODO Auto-generated constructor stub
 	 plan=new HashSet<plan>();

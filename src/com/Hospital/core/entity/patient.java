@@ -25,7 +25,7 @@ private String name;
 private String account;
 private String password;
 private int money;
-private Set<record> records=new HashSet<record>();
+private transient Set<record> records=new HashSet<record>();
 @Id
 @GeneratedValue(strategy =GenerationType.AUTO)
 @Column(name = "id", unique = true, nullable =true,updatable=false)

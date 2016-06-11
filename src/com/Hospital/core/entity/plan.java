@@ -21,7 +21,7 @@ public class plan implements Serializable{
 	private static final long serialVersionUID = -8609404414658230278L;
 private int id;
 private String date;
-private doctor doctor;
+private transient doctor doctor;
 private byte time_1;
 private byte time_2;
 private byte time_3;

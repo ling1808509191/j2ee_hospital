@@ -1,6 +1,7 @@
 package com.Hospital.core.action.Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Hospital.core.entity.hospital;
 import com.Hospital.core.modeleimp.managerModelImp;
+import com.Hospital.core.res.part_of_hospital;
 import com.google.gson.Gson;
 @Controller
 @RequestMapping(value="/manager")
@@ -33,8 +35,10 @@ public class managerController {
 		 String account=(String)mappp.get("account");
 		 String name=(String)mappp.get("name");
 		 String password=(String)mappp.get("password");
+		 String address=(String)mappp.get("address");
+		 String imageUrl=(String)mappp.get("imageUrl");
 		 System.out.println("account="+account+"  name="+name+"   password="+password);
-		 Boolean r = mmi.createHospital(account, name, password);
+		 Boolean r = mmi.createHospital(account, name, password, address, imageUrl);
 		 map.clear();
 		 map.put("result", r);
 //		 System.out.println(request.getInputStream());
@@ -50,7 +54,9 @@ public class managerController {
 		 String account = (String)mappp.get("account");
 		 String name = (String)mappp.get("name");
 		 String password = (String)mappp.get("password");
-		 Boolean r = mmi.updateHospital(h_id, account, name, password); 
+		 String address=(String)mappp.get("address");
+		 String imageUrl=(String)mappp.get("imageUrl");
+		 Boolean r = mmi.updateHospital(h_id, account, name, password, address, imageUrl); 
 		 map.clear();
 		 map.put("result", r);
 		 return gson.toJson(map);			
@@ -64,8 +70,17 @@ public class managerController {
 		 int pagenum = Integer.parseInt(request.getParameter("pagenum"));
 		 int pagesize = Integer.parseInt(request.getParameter("pagesize"));
 		 List<hospital> list = mmi.getHospitals(pagenum, pagesize);
+		 List<part_of_hospital> list_h = new ArrayList<part_of_hospital>();
+		 for(hospital h: list) {
+			 part_of_hospital poh = new part_of_hospital();
+			 poh.setH_id(h.getId());
+			 poh.setName(h.getName());
+			 poh.setAddress(h.getAddress());
+			 poh.setImageUrl(h.getImgurl());
+			 list_h.add(poh);
+		 }
 		 map.clear();
-		 map.put("content", list);
+		 map.put("content", list_h);
 		 return gson.toJson(map);			
 	}
 	

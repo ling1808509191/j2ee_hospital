@@ -28,13 +28,14 @@ public class hospitalModelImp implements hospitalModel {
 		}
 	}
 	
-	public boolean createApartment(int h_id, String account, String name, String password) {
+	public boolean createApartment(int h_id, String account, String name, String password, String type) {
 		hospital h = hsi.getHospitalById(h_id);
 		apartment a = new apartment();
 		a.setAccount(account);
 		a.setName(name);
 		a.setPassword(password);
 		a.setHospital(h);
+		a.setType(type);
 		boolean r = asi.saveApartment(a);
 		return r;
 	}
@@ -45,11 +46,12 @@ public class hospitalModelImp implements hospitalModel {
 		return r;
 	}
 	
-	public boolean updateApartment(int a_id, String account, String name, String password) {
+	public boolean updateApartment(int a_id, String account, String name, String password, String type) {
 		apartment a = asi.getApartmentById(a_id);
 		a.setAccount(account);
 		a.setName(name);
 		a.setPassword(password);
+		a.setType(type);
 		boolean r = asi.updateApartment(a);
 		return r;
 	}

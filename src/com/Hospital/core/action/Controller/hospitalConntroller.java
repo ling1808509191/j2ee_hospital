@@ -1,5 +1,6 @@
 package com.Hospital.core.action.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Hospital.core.entity.apartment;
 import com.Hospital.core.modeleimp.hospitalModelImp;
+import com.Hospital.core.res.part_of_apartment;
 import com.google.gson.Gson;
 
 @Controller
@@ -35,7 +37,8 @@ public class hospitalConntroller {
 		 String account = (String)mappp.get("account");
 		 String name = (String)mappp.get("name");
 		 String password = (String)mappp.get("password");
-		 Boolean r = hmi.createApartment(h_id, account, name, password);
+		 String type = (String)mappp.get("type");
+		 Boolean r = hmi.createApartment(h_id, account, name, password, type);
 		 map.clear();
 		 map.put("result", r);
 		return gson.toJson(map);			
@@ -51,7 +54,8 @@ public class hospitalConntroller {
 		 String account = (String)mappp.get("account");
 		 String name = (String)mappp.get("name");
 		 String password = (String)mappp.get("password ");
-		 Boolean r = hmi.updateApartment(a_id, account, name, password);
+		 String type = (String)mappp.get("type");
+		 Boolean r = hmi.updateApartment(a_id, account, name, password, type);
 		 map.clear();
 		 map.put("result", r);
 		 return gson.toJson(map);			
@@ -66,8 +70,16 @@ public class hospitalConntroller {
 		 int pagenum = Integer.parseInt(request.getParameter("pagenum"));
 		 int pagesize = Integer.parseInt(request.getParameter("pagesize"));
 		 List<apartment> list = hmi.getApartments(pagenum, pagesize);
+		 List<part_of_apartment> list_a = new ArrayList<part_of_apartment>();
+		 for(apartment a : list) {
+			 part_of_apartment poa = new part_of_apartment();
+			 poa.setA_id(a.getId());
+			 poa.setName(a.getName());
+			 poa.setType(a.getType());
+			 list_a.add(poa);
+		 }
 		 map.clear();
-		 map.put("content", list);
+		 map.put("content", list_a);
 		 return gson.toJson(map);			
 	}
 	

@@ -38,7 +38,7 @@ public class hospital implements Serializable{
 		this.address = address;
 	}
 	private String address;
-	private Set<apartment> apartments=new HashSet<apartment>();
+	private transient Set<apartment> apartments=new HashSet<apartment>();
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	@Column(name = "id", unique = true, nullable =true,updatable=false)

@@ -1,5 +1,6 @@
 package com.Hospital.core.action.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.Hospital.core.entity.doctor;
 import com.Hospital.core.modeleimp.apartmentModelImp;
+import com.Hospital.core.res.part_of_doctor;
 import com.google.gson.Gson;
 
 @Controller
@@ -36,7 +38,9 @@ public class apartmentController {
 		 String password = (String)mappp.get("password");
 		 int level = (int)(mappp.get("level"));
 		 int price = (int)(mappp.get("price"));
-		 Boolean r = ami.createDoctor(a_id, h_id, account, name, password, level, price);
+		 String description = (String)mappp.get("description");
+		 String imageUrl = (String)mappp.get("imageUrl");
+		 Boolean r = ami.createDoctor(a_id, h_id, account, name, password, level, price, description, imageUrl);
 		 map.clear();
 		 map.put("result", r);
 		return gson.toJson(map);			
@@ -54,7 +58,9 @@ public class apartmentController {
 		 String password = (String)mappp.get("password ");
 		 int level = (int)(mappp.get("level"));
 		 int price = (int)(mappp.get("price"));
-		 Boolean r = ami.updateDoctor(a_id, d_id, account, name, password, level, price);
+		 String description = (String)mappp.get("description");
+		 String imageUrl = (String)mappp.get("imageUrl");
+		 Boolean r = ami.updateDoctor(a_id, d_id, account, name, password, level, price, description, imageUrl);
 		 map.clear();
 		 map.put("result", r);
 		return gson.toJson(map);	
@@ -68,8 +74,18 @@ public class apartmentController {
 		 int pagenum = Integer.parseInt(request.getParameter("pagenum"));
 		 int pagesize = Integer.parseInt(request.getParameter("pagesize"));
 		 List<doctor> list = ami.getDoctors(pagenum, pagesize);
+		 List<part_of_doctor> list_d = new ArrayList<part_of_doctor>();
+		 for(doctor d : list) {
+			 part_of_doctor pod = new part_of_doctor();
+			 pod.setD_id(d.getId());
+			 pod.setName(d.getName());
+			 pod.setDescription(d.getDetel());
+			 pod.setImageUrl(d.getImgurl());
+			 pod.setLevel(d.getLevel());
+			 list_d.add(pod);
+		 }
 		 map.clear();
-		 map.put("content", list);
+		 map.put("content", list_d);
 		return gson.toJson(map);			
 	}
 	

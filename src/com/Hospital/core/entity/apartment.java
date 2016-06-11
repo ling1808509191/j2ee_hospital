@@ -34,8 +34,8 @@ public String getType() {
 public void setType(String type) {
 	this.type = type;
 }
-private hospital hospital;
-private Set<doctor> doctors=new HashSet<doctor>();
+private transient hospital hospital;
+private transient Set<doctor> doctors=new HashSet<doctor>();
 @Id
 @GeneratedValue(strategy =GenerationType.AUTO)
 @Column(name = "id", unique = true, nullable =true,updatable=false)

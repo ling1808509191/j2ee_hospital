@@ -31,7 +31,7 @@ public class apartmentModelImp implements apartmentModel {
 		}
 	}
 	
-	public boolean createDoctor(int a_id, int h_id, String account, String name, String password, int level, int price) {
+	public boolean createDoctor(int a_id, int h_id, String account, String name, String password, int level, int price, String description, String imageUrl) {
 		apartment a = asi.getApartmentById(a_id);
 		hospital h = hsi.getHospitalById(h_id);
 		doctor d = new doctor();
@@ -42,6 +42,8 @@ public class apartmentModelImp implements apartmentModel {
 		d.setName(name);
 		d.setPassword(password);
 		d.setPrice(price);
+		d.setDetel(description);
+		d.setImgurl(imageUrl);
 		boolean r = dsi.saveDoctor(d);
 		return r;
 	}
@@ -52,13 +54,15 @@ public class apartmentModelImp implements apartmentModel {
 		return r;
 	}
 	
-	public boolean updateDoctor(int a_id, int d_id, String account, String name, String password, int level, int price) {
+	public boolean updateDoctor(int a_id, int d_id, String account, String name, String password, int level, int price, String description, String imageUrl) {
 		doctor d = dsi.getDoctorById(d_id);
 		d.setAccount(account);
 		d.setName(name);
 		d.setPassword(password);
 		d.setPrice(price);
 		d.setLevel(level);
+		d.setDetel(description);
+		d.setImgurl(imageUrl);
 		boolean r = dsi.updateDoctor(d);
 		return r;
 	}

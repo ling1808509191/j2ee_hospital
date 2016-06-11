@@ -27,11 +27,13 @@ public class managerModelImp implements managerModel{
 		}
 	}
 	
-	public boolean createHospital(String account, String name, String password) {
+	public boolean createHospital(String account, String name, String password, String address, String imageUrl) {
 		hospital h = new hospital();
 		h.setAccount(account);
 		h.setName(name);
 		h.setPassword(password);
+		h.setAddress(address);
+		h.setImgurl(imageUrl);
 		boolean r = hsi.saveHospital(h);
 		return r;
 	}
@@ -42,11 +44,13 @@ public class managerModelImp implements managerModel{
 		return r;
 	}
 	
-	public boolean updateHospital(int h_id, String account, String name, String password) {
+	public boolean updateHospital(int h_id, String account, String name, String password, String address, String imageUrl) {
 		hospital h = hsi.getHospitalById(h_id);
 		h.setAccount(account);
 		h.setName(name);
 		h.setPassword(password);
+		h.setAddress(address);
+		h.setImgurl(imageUrl);
 		boolean r = hsi.updateHospital(h);
 		return r;
 	}

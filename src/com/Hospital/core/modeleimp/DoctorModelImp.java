@@ -71,6 +71,7 @@ public class DoctorModelImp implements doctorModel {
 
 	@Override
 	public List<plan> getPlanByDate(String date) {
+		
 		// TODO Auto-generated method stub
 		return psi.getPlanByDate(date);
 	}
